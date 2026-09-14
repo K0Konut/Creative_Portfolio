@@ -6,9 +6,9 @@
 |---|---|
 | Projet | Portfolio de Costa Maskulov |
 | Dernière mise à jour | 2026-09-14 |
-| Phase actuelle | Parcours utilisateurs |
-| Prochaine action | Cadrer et documenter les parcours prioritaires dans `docs/ux/USER_FLOWS.md` |
-| État Git | Dépôt existant ; branche de travail `docs/dev/create-product-prd` |
+| Phase actuelle | Architecture des pages |
+| Prochaine action | Faire relire et fusionner la pull request des parcours dans `dev`, puis créer `docs/ux/PAGE_ARCHITECTURE.md` sur une nouvelle branche dédiée |
+| État Git | `USER_FLOWS.md` v0.2.0 validé sur la branche de travail `docs/dev/create-user-flows` ; intégration dans `dev` en attente |
 
 ## État des phases
 
@@ -17,8 +17,8 @@
 | 1 | Cadrage du besoin | Validée | Entretien consolidé et approuvé par Costa le 2026-09-14 | Aucune |
 | 2 | PRD | Validée | `docs/product/PRD.md` v0.2.1 approuvé explicitement par Costa le 2026-09-14 | Toute modification substantielle exigera une nouvelle validation |
 | 3 | Utilisateurs, fonctionnalités et contraintes | Validée | Sections 6, 11, 12, 13 et 17 du PRD incluses dans l'approbation v0.2.1 | Aucune pour démarrer les parcours |
-| 4 | Parcours utilisateurs | Non commencée | Parcours critiques seulement identifiés dans le PRD | Détailler après validation produit |
-| 5 | Architecture des pages | Non commencée | Quatre pages V1 nommées, sans structure UX | Attendre les parcours validés |
+| 4 | Parcours utilisateurs | Validée | `docs/ux/USER_FLOWS.md` v0.2.0 approuvé explicitement sans réserve par Costa le 2026-09-14 | Toute modification substantielle exigera une nouvelle validation |
+| 5 | Architecture des pages | Non commencée | Quatre pages V1 nommées et entrées UX validées dans les parcours | Intégrer les parcours dans `dev`, puis détailler pages, navigation, contenus et états |
 | 6 | Inventaire des composants | Non commencée | Aucune preuve | Attendre l'architecture des pages |
 | 7 | Fondations du design system | Non commencée | Moodboard et intentions de marque disponibles | Attendre PRD, UX et inventaire |
 | 8 | Maquette Figma | Non commencée | Références externes seulement | Attendre les entrées produit et UX validées |
@@ -70,7 +70,7 @@
 
 ## Modèle Git prévu
 
-Le dépôt existe et le travail documentaire courant se trouve sur `docs/dev/create-product-prd`. Lors de la phase d'initialisation applicative, le modèle attendu sera :
+Le dépôt existe, le PRD a été fusionné dans `dev` et le travail documentaire courant se trouve sur `docs/dev/create-user-flows`. Lors de la phase d'initialisation applicative, le modèle attendu sera :
 
 - `main` pour les versions destinées aux releases ;
 - `dev` pour l'intégration ;
@@ -88,4 +88,7 @@ Le dépôt existe et le travail documentaire courant se trouve sur `docs/dev/cre
 - L'expérience doit évoquer un mini studio digital personnel : créative, interactive, technique, lisible et professionnelle.
 - Le CRM et les analytics sont reportés et ne font pas partie du dépôt V1.
 - Le PRD v0.2.1 a été validé explicitement par Costa le 2026-09-14, sans réserve.
-- La prochaine phase est la documentation des parcours utilisateurs ; elle n'est pas encore commencée.
+- Les sept parcours utilisateurs V1 documentés dans `docs/ux/USER_FLOWS.md` v0.2.0 ont été validés explicitement sans réserve par Costa le 2026-09-14.
+- Les coordonnées, les CV, le contenu de profil, le contenu SideQuest et la responsabilité de traduction restent des dépendances de contenu ; elles ne bloquent pas la validation de la structure des parcours.
+- L'action projet principale mène à la collection ; le changement de langue conserve la destination exacte ; le récit du profil précède le téléchargement direct du CV dans la langue active.
+- Les filtres, tris, suggestions de projets, page Contact et réglage manuel de réduction du mouvement sont reportés après la V1 et devront être cadrés dans une future version du PRD.
