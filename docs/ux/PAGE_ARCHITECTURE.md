@@ -5,7 +5,7 @@
 | Champ | Valeur |
 |---|---|
 | Produit | Portfolio personnel de Costa Maskulov |
-| Version | 0.1.0 |
+| Version | 0.1.1 |
 | Statut | Validé |
 | Dernière mise à jour | 2026-09-15 |
 | Date de validation | 2026-09-15 |
@@ -53,7 +53,7 @@ Il définit les responsabilités des pages, la hiérarchie des contenus, les tra
 | PA-DEC-011 | La timeline unifiée présente les événements du plus récent au plus ancien. |
 | PA-DEC-012 | Le CTA principal de la hero mène à la collection ; l'aperçu SideQuest de l'accueil mène directement à son détail. |
 
-Ces décisions ont été confirmées individuellement le 2026-09-15. Le document complet reste toutefois « À valider » jusqu'à sa relecture globale.
+Ces décisions ont été confirmées individuellement le 2026-09-15, puis le document complet a été approuvé explicitement sans réserve dans sa version 0.1.0.
 
 ## 4. Sitemap fonctionnelle
 
@@ -543,3 +543,4 @@ L'architecture peut être validée si Costa confirme que :
 | Version | Date | État | Évolution |
 |---|---|---|---|
 | 0.1.0 | 2026-09-15 | Validé | Première architecture complète issue du PRD v0.2.1 et des parcours v0.3.1 ; version approuvée explicitement sans réserve par Costa. |
+| 0.1.1 | 2026-09-15 | Validé | Correction éditoriale d'une mention résiduelle « À valider » devenue contradictoire après l'approbation de la version 0.1.0 ; aucun changement fonctionnel. |
