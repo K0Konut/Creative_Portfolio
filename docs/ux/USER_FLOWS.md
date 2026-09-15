@@ -5,13 +5,13 @@
 | Champ | Valeur |
 |---|---|
 | Produit | Portfolio personnel de Costa Maskulov |
-| Version | 0.2.0 |
+| Version | 0.3.1 |
 | Statut | Validé |
-| Dernière mise à jour | 2026-09-14 |
-| Date de validation | 2026-09-14 |
+| Dernière mise à jour | 2026-09-15 |
+| Date de validation | 2026-09-15 |
 | Périmètre | V1 bilingue français–anglais |
 | Source produit | `docs/product/PRD.md` v0.2.1 validé le 2026-09-14 |
-| Source complémentaire | Entretien de revue des parcours avec Costa, 2026-09-14 |
+| Source complémentaire | Entretiens de revue des parcours du 2026-09-14 et d'architecture des pages du 2026-09-15 avec Costa |
 | Responsable de validation | Costa Maskulov |
 
 ## 2. Finalité et périmètre
@@ -35,7 +35,8 @@ Les parcours restent au niveau des intentions, réponses observables, décisions
 - Chaque projet possède une adresse directe et partageable qui fournit le contexte nécessaire sans passage préalable par l'accueil ou la collection.
 - La collection V1 présente, pour chaque projet, son nom, une image d'aperçu, son année et un seul type principal. Les types complémentaires apparaissent dans le détail.
 - Aucun tri ni filtre n'est proposé dans la collection V1 limitée à SideQuest.
-- Le détail commence par un carrousel, puis présente la description, les stacks, le rôle et l'année. Les liens GitHub et démo ne sont affichés que lorsqu'ils existent réellement.
+- Le détail commence par un carrousel, puis présente les métadonnées disponibles, la description et les stacks. Le rôle est réservé aux projets réellement réalisés et reste entièrement absent de SideQuest. Les liens GitHub et démo ne sont affichés que lorsqu'ils existent réellement.
+- Le détail se termine par des suggestions lorsqu'un autre projet existe ; en leur absence, il propose de contacter Costa par email ou LinkedIn sans créer de page Contact.
 - Le carrousel automatique fournit une commande « Pause / Lecture » permettant un arrêt durable en plus de sa navigation manuelle.
 - Le téléchargement du CV intervient après la présentation du parcours et fournit directement le fichier correspondant à la langue active.
 - Les animations ne conditionnent ni la compréhension ni l'accès à une action ; la préférence système `prefers-reduced-motion` est respectée.
@@ -48,7 +49,7 @@ Les parcours restent au niveau des intentions, réponses observables, décisions
 |---|---|---|---|---|---|---|
 | FLOW-001 | Critique | `USER-001` | Comprendre le positionnement et commencer l'exploration des projets | Arrivée directe sur le portfolio | `FLOW-002` | `FEAT-001`, `FR-001`, `FR-002` |
 | FLOW-002 | Critique | `USER-001` | Comprendre l'offre de projets malgré un catalogue limité à un mock | Accès à la collection de projets | `FLOW-003` | `FEAT-002`, `FR-003`, `FR-004`, `FR-005` |
-| FLOW-003 | Critique | Visiteur | Examiner la structure d'une étude de cas sans confondre le mock avec une réalisation | Sélection de SideQuest | Poursuite vers le profil, le CV ou le contact | `FEAT-003`, `FEAT-009`, `FR-005` à `FR-008`, `FR-015` |
+| FLOW-003 | Critique | Visiteur | Examiner la structure d'une étude de cas sans confondre le mock avec une réalisation | Sélection de SideQuest depuis l'accueil ou la collection, ou URL directe | Poursuite vers le profil, le CV ou le contact | `FEAT-003`, `FEAT-009`, `FR-005` à `FR-008`, `FR-015` |
 | FLOW-004 | Critique | `USER-001` | Vérifier le parcours de Costa et récupérer le bon CV | Besoin d'approfondir le profil | CV correspondant à la langue téléchargé | `FEAT-004`, `FEAT-006`, `FR-009`, `FR-012` |
 | FLOW-005 | Critique | `USER-001` | Contacter Costa ou consulter ses profils publics | Intention d'échanger ou d'approfondir le profil | Moyen externe choisi ouvert | `FEAT-007`, `FR-013` |
 | FLOW-006 | Transversal critique | Visiteur | Continuer la consultation dans l'autre langue | Changement de langue depuis une destination V1 | Destination logique équivalente dans la langue choisie | `FEAT-005`, `FR-010`, `FR-011` |
@@ -189,16 +190,16 @@ Le recruteur sait qu'il consulte une collection V1 limitée à un mock de démon
 ### Préconditions et déclencheur
 
 - **Préconditions :** le contenu illustratif SideQuest et sa mention de transparence sont disponibles dans la langue active.
-- **Déclencheur :** le visiteur sélectionne SideQuest depuis la collection ou arrive sur son adresse directe.
+- **Déclencheur :** le visiteur sélectionne SideQuest depuis son aperçu sur l'accueil ou depuis la collection, ou arrive sur son adresse directe.
 
 ### Étapes principales
 
 1. Le système rappelle avant toute description ambiguë que SideQuest est un mock fictif et une application non réalisée.
 2. Le visiteur parcourt d'abord un carrousel d'images accompagné d'un contexte indiquant la nature de mock des visuels.
-3. Le système présente ensuite, dans l'ordre, la description du concept, les stacks illustrées, le rôle ou statut du travail et l'année pertinente.
-4. Pour SideQuest, le système distingue explicitement les hypothèses de conception des faits et n'attribue aucun rôle réalisé à Costa.
+3. Le système présente ensuite les métadonnées disponibles : type principal et année pertinente pour SideQuest ; rôle, type et année pour un futur projet réel lorsque ces informations existent.
+4. Le système présente la description du concept, puis les stacks illustrées. Pour SideQuest, il distingue explicitement les hypothèses de conception des faits et n'affiche aucun champ « Rôle ».
 5. Les liens GitHub et démo sont entièrement masqués puisqu'aucune ressource réelle correspondante n'existe.
-6. Le détail se termine sans suggérer de faux autre projet ni ajouter un bloc de contact spécifique. La navigation générale reste disponible.
+6. Le détail se termine par des suggestions lorsqu'un autre projet existe ; dans la V1 limitée à SideQuest, il affiche à la place une invitation à contacter Costa par email ou LinkedIn.
 
 ### Décisions et embranchements
 
@@ -210,12 +211,14 @@ Le recruteur sait qu'il consulte une collection V1 limitée à un mock de démon
 ### Variantes
 
 - Le visiteur arrive directement sur le détail par une URL partagée ; la mention de transparence reste visible et compréhensible sans contexte préalable.
+- Le visiteur ouvre SideQuest depuis son aperçu sur l'accueil sans passer par la collection ; le contexte et la transparence du détail restent identiques.
 - Le visiteur consulte uniquement le texte ; il reçoit la même information essentielle que celui qui consulte les médias.
 - Le carrousel avance automatiquement toutes les cinq secondes et fournit une navigation manuelle immédiate.
 - Toute interaction par pointeur, clavier ou geste tactile met temporairement l'autoplay en pause. Il reprend après huit secondes d'inactivité uniquement si le carrousel n'a plus le focus, n'est plus survolé et n'a pas été mis en pause explicitement.
 - Une commande « Pause / Lecture » permet d'interrompre l'autoplay sans limite de temps puis de le relancer volontairement. Une pause explicite n'est jamais annulée par le délai d'inactivité.
 - Avec `prefers-reduced-motion`, l'autoplay est désactivé et le visiteur conserve la navigation manuelle.
 - Pour un futur projet réel, plusieurs types peuvent être présentés dans le détail et les liens GitHub ou démo sont affichés seulement lorsqu'ils existent.
+- Dès qu'un autre projet réel est disponible, le bloc final peut proposer une sélection pertinente à la place de l'invitation de contact, sans inventer de recommandation.
 
 ### Erreurs et sorties d'échec
 
@@ -246,7 +249,7 @@ Le visiteur comprend la structure future d'une étude de cas et peut affirmer sa
 
 ### Éléments liés
 
-`OBJ-001`, `OBJ-002`, `FEAT-003`, `FEAT-009`, `FR-005`, `FR-006`, `FR-007`, `FR-008`, `FR-015`, `AC-FR-005-01`, `AC-FR-006-01`, `AC-FR-007-01`, `AC-FR-008-01`, `AC-FR-015-01`, `KPI-001`, `RISK-001`, `RISK-002`, `FLOW-002`, `FLOW-004`, `FLOW-005`, `FLOW-006`, `FLOW-007`.
+`OBJ-001`, `OBJ-002`, `FEAT-003`, `FEAT-009`, `FR-005`, `FR-006`, `FR-007`, `FR-008`, `FR-015`, `AC-FR-005-01`, `AC-FR-006-01`, `AC-FR-007-01`, `AC-FR-008-01`, `AC-FR-015-01`, `KPI-001`, `RISK-001`, `RISK-002`, `FLOW-001`, `FLOW-002`, `FLOW-004`, `FLOW-005`, `FLOW-006`, `FLOW-007`.
 
 ### Questions ouvertes
 
@@ -528,6 +531,7 @@ Aucune décision produit bloquante pour ce parcours. Les effets concernés et le
 
 - Arrivée principale sur le positionnement de Costa.
 - Accès direct à la collection de projets.
+- Accès au détail SideQuest depuis son aperçu sur l'accueil.
 - Accès direct au détail SideQuest depuis un lien partagé.
 - Accès direct aux informations de parcours.
 
@@ -535,7 +539,7 @@ Aucune décision produit bloquante pour ce parcours. Les effets concernés et le
 
 - Positionnement vers la collection, puis choix du projet par le visiteur.
 - Collection vers détail SideQuest.
-- Détail SideQuest sans suggestion de projet ni bloc de contact spécifique en V1 ; la navigation générale reste disponible.
+- Détail SideQuest vers une invitation de contact en V1 ; lorsqu'un autre projet existe, des suggestions pertinentes remplacent cette invitation.
 - Profil vers CV, projets ou contact.
 - Toute destination vers son équivalent linguistique.
 - Moyens de contact et profils vers des services externes.
@@ -543,12 +547,13 @@ Aucune décision produit bloquante pour ce parcours. Les effets concernés et le
 ### Décisions structurantes transmises à la phase suivante
 
 - L'action projet principale de l'introduction mène à la collection, jamais directement à SideQuest.
+- L'aperçu SideQuest présenté plus bas sur l'accueil mène directement à son détail.
 - Chaque entrée de la collection présente le nom, l'aperçu, l'année et un seul type principal ; aucun tri ni filtre n'apparaît en V1.
-- Le détail est directement partageable et ordonne les contenus ainsi : carrousel, description, stacks, rôle ou statut, année, puis liens réels éventuels.
+- Le détail est directement partageable et ordonne les contenus ainsi : carrousel, métadonnées disponibles, description, stacks, puis liens réels éventuels. SideQuest n'affiche aucun champ « Rôle ».
 - Le changement de langue reste disponible sur les quatre destinations V1 et conserve exactement la destination logique courante.
 - Le récit du profil précède le téléchargement direct du CV dans la langue active.
 - L'email visible et copiable et LinkedIn possèdent une priorité équivalente, sans page Contact.
-- Le détail SideQuest se termine sans recommandation artificielle tant qu'aucun autre projet réel n'existe.
+- Le détail se termine par des suggestions lorsqu'un autre projet existe ; sinon, une invitation à contacter Costa par email ou LinkedIn remplace les recommandations.
 - Le carrousel combine autoplay et navigation manuelle ; il s'arrête temporairement pendant l'interaction, reprend après huit secondes d'inactivité, propose une pause durable explicite et reste manuel avec réduction du mouvement.
 
 ## 14. Dépendances et questions ouvertes consolidées
@@ -575,19 +580,19 @@ Le document peut être validé si Costa confirme que :
 - le changement de langue conserve la destination exacte et propose le CV correspondant ;
 - le récit du parcours précède le téléchargement direct du CV ;
 - l'email copiable et LinkedIn ont une priorité équivalente, sans formulaire ni page Contact en V1 ;
+- le détail présente les métadonnées avant la description et les stacks, sans champ « Rôle » pour SideQuest ;
+- la fin du détail alterne entre suggestions réelles et invitation de contact selon la disponibilité d'autres projets ;
 - le carrousel automatique reste contrôlable manuellement, peut être mis en pause durablement et devient statique avec réduction du mouvement ;
 - la préférence système de réduction du mouvement suffit comme contrat minimal V1 ;
 - les décisions reportées à l'architecture des pages peuvent y être tranchées sans rouvrir le périmètre produit.
 
-Costa a validé explicitement la version 0.2.0 sans réserve le 2026-09-14. Cette version constitue l'entrée validée de l'architecture des pages.
+Costa a validé explicitement la version 0.3.1 le 2026-09-15. Cette version remplace la version 0.3.0 comme référence validée pour l'architecture des pages.
 
 ## 16. Intentions explicitement reportées après la V1
 
 Les décisions suivantes ont été exprimées pendant la revue, mais ne modifient pas les parcours V1 ni le PRD v0.2.1 validé :
 
 - ajouter en V2 un ordre alphabétique par défaut, un tri du plus récent au plus ancien et des filtres par type lorsque plusieurs projets réels seront disponibles ;
-- suggérer d'autres projets à la fin d'un détail lorsqu'un catalogue réel le permet ;
-- remplacer ces suggestions par une invitation à prendre contact lorsqu'aucun autre projet n'est disponible et qu'une page Contact existe ;
 - proposer éventuellement en V2 un réglage manuel de réduction du mouvement en complément de la préférence système.
 
 Ces intentions devront être cadrées dans une future mise à jour du PRD avant leur conception ou leur implémentation.
@@ -598,3 +603,5 @@ Ces intentions devront être cadrées dans une future mise à jour du PRD avant 
 |---|---|---|---|
 | 0.1.0 | 2026-09-14 | Brouillon | Première formalisation de `FLOW-001` à `FLOW-007` depuis le PRD v0.2.1. |
 | 0.2.0 | 2026-09-14 | Validé | Intégration de l'entretien de revue avec Costa, sécurisation du carrousel automatique pour l'accessibilité et validation explicite sans réserve. |
+| 0.3.0 | 2026-09-15 | Validé | Place les métadonnées avant la description, masque le rôle pour SideQuest et ajoute la fin de détail conditionnelle entre suggestions réelles et invitation de contact ; version approuvée explicitement par Costa. |
+| 0.3.1 | 2026-09-15 | Validé | Distingue le CTA de hero vers la collection et l'aperçu SideQuest de l'accueil vers son détail, conformément à la décision explicite de Costa. |
