@@ -5,10 +5,10 @@
 | Champ | Valeur |
 |---|---|
 | Produit | Portfolio personnel de Costa Maskulov |
-| Version | 0.1.0 |
+| Version | 0.2.0 |
 | Statut | Validé |
-| Dernière mise à jour | 2026-09-15 |
-| Date de validation | 2026-09-15 |
+| Dernière mise à jour | 2026-09-16 |
+| Date de validation | 2026-09-16 |
 | Périmètre | V1 bilingue français–anglais |
 | Source produit | `docs/product/PRD.md` v0.2.1, validé le 2026-09-14 |
 | Source UX | `docs/ux/USER_FLOWS.md` v0.3.1, validé le 2026-09-15 |
@@ -20,7 +20,7 @@
 
 Ce document définit le vocabulaire de composants nécessaire pour maquetter les quatre pages V1 et la page introuvable sans ambiguïté majeure. Il décrit leurs responsabilités, compositions, variantes, états, interactions, contraintes accessibles et comportements responsive.
 
-L'inventaire reste conceptuel : il ne choisit ni framework, ni API Vue, ni structure de fichiers, ni propriétés techniques. Les couleurs, typographies, espacements, grilles, formes, iconographies détaillées et courbes de mouvement seront définis pendant les fondations du design system et la maquette Figma.
+L'inventaire reste conceptuel : il ne choisit ni framework, ni API Vue, ni structure de fichiers, ni propriétés techniques. Les couleurs, typographies, espacements, grilles, formes, iconographies et courbes de mouvement sont définis dans `docs/ui/DESIGN_SYSTEM.md` et `docs/ui/MOTION_GUIDELINES.md` ; leur traduction visuelle sera vérifiée pendant la maquette Figma.
 
 ### Frontières confirmées
 
@@ -39,7 +39,7 @@ L'inventaire reste conceptuel : il ne choisit ni framework, ni API Vue, ni struc
 | CI-DEC-002 | Le sélecteur de langue est visible directement dans l'en-tête desktop et placé dans le panneau de navigation mobile. |
 | CI-DEC-003 | L'aperçu de projet est un composant commun avec les variantes `mise en avant` et `collection`. |
 | CI-DEC-004 | Les entrées de la timeline restent entièrement visibles en V1 ; une version repliable est reportée après la V1. |
-| CI-DEC-005 | Le bandeau de stacks défile lentement en boucle sur écran large, s'arrête au survol ou au focus et devient statique sur mobile ou avec réduction du mouvement. |
+| CI-DEC-005 | Le bandeau de stacks reste statique à toutes les largeurs en V1 ; il se recompose avec la grille sans défilement automatique ni duplication de contenu. |
 | CI-DEC-006 | Le CV utilise un composant de mise en avant sur À propos, tandis que le pied de page contient un simple lien de téléchargement. |
 | CI-DEC-007 | Un groupe de contacts est partagé entre À propos et la fin du détail projet ; le pied de page conserve de simples liens. |
 | CI-DEC-008 | Le statut d'un projet est un composant métier avec une variante courte sur les aperçus et une variante explicative sur le détail. |
@@ -86,7 +86,7 @@ Le comportement automatique du carrousel n'a pas été rouvert : le contrat vali
 | `COMP-205` | Carrousel d'images du projet | Parcourir les médias d'un projet avec contrôle manuel et automatique maîtrisé. |
 | `COMP-206` | Miniature de média | Prévisualiser et sélectionner une image du carrousel. |
 | `COMP-207` | Élément de stack | Nommer une technologie ou compétence sans dépendre d'un logo seul. |
-| `COMP-208` | Bandeau de stacks | Présenter une sélection synthétique et animée de stacks sur l'accueil. |
+| `COMP-208` | Bandeau de stacks | Présenter une sélection synthétique et statique de stacks sur l'accueil. |
 | `COMP-209` | Liste de stacks | Organiser les stacks et compétences détaillées par groupes pertinents. |
 | `COMP-210` | Timeline du parcours | Présenter formation et expériences dans une chronologie unifiée. |
 | `COMP-211` | Entrée de timeline | Décrire un événement de parcours et sa catégorie. |
@@ -146,7 +146,7 @@ Aucun composant décoratif autonome n'est figé à ce stade. Les éléments de l
 - **Interactions et événements conceptuels :** ouvrir une ressource externe, préparer un email, copier une adresse ou télécharger un document.
 - **Accessibilité :** l'icône est décorative lorsque le libellé porte déjà le sens ; tout changement de contexte est annoncé dans le nom ou le contexte.
 - **Responsive :** icône et libellé restent associés et la cible conserve une taille suffisante.
-- **Dépendances et réutilisation :** dépend de `COMP-001` et de l'iconographie future ; sert notamment `COMP-215` et `COMP-216`.
+- **Dépendances et réutilisation :** dépend de `COMP-001` et du set d'icônes fonctionnelles défini dans `docs/ui/DESIGN_SYSTEM.md` ; sert notamment `COMP-215` et `COMP-216`.
 - **Exclusions :** ne valide pas les coordonnées ni les ressources.
 - **Questions ouvertes :** aucune question structurelle.
 
@@ -194,7 +194,7 @@ Aucun composant décoratif autonome n'est figé à ce stade. Les éléments de l
 - **Contenu ou données :** nom ou signature de Costa, destination d'accueil dans la langue active.
 - **Composition :** `COMP-102`, `COMP-103` et `COMP-104` selon le viewport.
 - **Variantes :** desktop et mobile.
-- **Tailles :** une hauteur compacte cohérente ; valeurs exactes reportées à Figma.
+- **Tailles :** `header/mobile` à 64 px et `header/large` à 72 px selon les fondations ; leur tenue avec les contenus FR/EN sera vérifiée dans Figma.
 - **États :** normal, navigation mobile ouverte et éventuel état lié au défilement si Figma le justifie sans masquer les accès.
 - **Interactions et événements conceptuels :** retour à l'accueil ; ouverture ou fermeture du panneau mobile.
 - **Accessibilité :** repère d'en-tête, lien d'accueil explicite, mécanisme d'évitement vers le contenu, ordre de focus cohérent.
@@ -233,9 +233,9 @@ Aucun composant décoratif autonome n'est figé à ce stade. Les éléments de l
 - **Interactions et événements conceptuels :** ouvrir, fermer, choisir une destination ou une langue ; fermeture après choix, via la même commande ou avec `Escape`.
 - **Accessibilité :** commande nommée avec état exposé ; relation entre commande et panneau ; retour du focus sur la commande à la fermeture ; aucun contenu essentiel uniquement disponible par geste.
 - **Responsive :** absent de l'ordre d'interaction desktop ; contenu sans débordement sur mobile et au zoom.
-- **Dépendances et réutilisation :** `COMP-101`, `COMP-102`, `COMP-104`.
+- **Dépendances et réutilisation :** `COMP-101`, `COMP-102`, `COMP-104`, seuil `large` à 1024 px et `motion/duration/panel` définis dans les fondations ; le focus suit le contrat de navigation validé.
 - **Exclusions :** ne devient pas une page, un tiroir plein écran ou une source de navigation distincte.
-- **Questions ouvertes :** seuil d'apparition et animation à définir dans les fondations responsive et motion.
+- **Questions ouvertes :** aucune question structurelle.
 
 ### COMP-104 — Sélecteur de langue
 
@@ -354,7 +354,7 @@ Aucun composant décoratif autonome n'est figé à ce stade. Les éléments de l
 - **Interactions et événements conceptuels :** avancer automatiquement toutes les cinq secondes ; suspendre lors d'une interaction ; reprendre après huit secondes d'inactivité uniquement sans focus, sans survol et sans pause explicite ; sélectionner une miniature ; aller à l'image précédente ou suivante ; mettre en pause ou relancer durablement.
 - **Accessibilité :** région nommée, position annoncée, commandes nommées, navigation clavier complète, aucun déplacement de focus automatique, pause persistante, autoplay désactivé avec réduction du mouvement.
 - **Responsive :** ratio maîtrisé, commandes tactiles accessibles et miniatures horizontalement défilables sans masquer précédent/suivant ni la position.
-- **Dépendances et réutilisation :** images SideQuest, alternatives et légendes validées ; règles motion futures.
+- **Dépendances et réutilisation :** images SideQuest, alternatives et légendes validées ; règles de motion définies dans `docs/ui/MOTION_GUIDELINES.md`.
 - **Exclusions :** images uniquement en V1 ; ni vidéo, ni audio, ni contenu indispensable révélé uniquement par autoplay.
 - **Questions ouvertes :** nombre final d'images et stratégie de bouclage à confirmer avec les médias et la maquette.
 
@@ -398,16 +398,16 @@ Aucun composant décoratif autonome n'est figé à ce stade. Les éléments de l
 - **Responsabilité :** donner un aperçu synthétique des technologies principales sans ralentir la lecture.
 - **Pages et parcours :** `PAGE-001` ; `FLOW-001`, `FLOW-007`.
 - **Contenu ou données :** sélection priorisée de stacks.
-- **Composition :** séquence de `COMP-207`, dupliquée visuellement seulement si nécessaire à une boucle continue sans doublon sémantique, et commande Pause/Lecture issue de `COMP-001` lorsque le bandeau est animé.
-- **Variantes :** animée sur écran large et statique sur mobile ou avec réduction du mouvement.
+- **Composition :** séquence unique de `COMP-207`, sans duplication visuelle ou sémantique.
+- **Variantes :** compacte et étendue selon la place disponible, toutes deux statiques.
 - **Tailles :** adaptées à la densité du viewport.
-- **États :** running, paused by hover, paused by focus et static.
-- **Interactions et événements conceptuels :** défilement lent en boucle ; arrêt au survol ou lorsque le bandeau contient le focus ; pause durable et reprise via une commande explicite.
-- **Accessibilité :** contenu disponible dans un ordre lisible sans animation ; aucune information dupliquée pour les technologies d'assistance ; mouvement non indispensable ; commande Pause/Lecture nommée et utilisable au clavier lorsque l'animation est active.
-- **Responsive :** devient une composition statique refluée sur mobile, sans geste précis obligatoire.
-- **Dépendances et réutilisation :** `COMP-207`, sélection de stacks et règles motion.
+- **États :** normal uniquement ; aucun état temporel ou interactif en V1.
+- **Interactions et événements conceptuels :** aucune ; la consultation ne dépend ni d'un défilement automatique ni d'une commande Pause/Lecture.
+- **Accessibilité :** contenu présent une seule fois dans un ordre de lecture naturel ; aucune information dupliquée ou révélée par le mouvement.
+- **Responsive :** se reforme sur plusieurs lignes ou modules selon la grille, sans défilement horizontal obligatoire ni geste précis.
+- **Dépendances et réutilisation :** `COMP-207`, sélection de stacks et grille responsive du design system.
 - **Exclusions :** aucun lien, filtre ou interaction métier.
-- **Questions ouvertes :** vitesse, direction et seuil responsive à définir en Figma.
+- **Questions ouvertes :** densité finale à vérifier avec les contenus réels dans Figma, sans modifier le contrat statique.
 
 ### COMP-209 — Liste de stacks
 
@@ -492,7 +492,7 @@ Aucun composant décoratif autonome n'est figé à ce stade. Les éléments de l
 - **Responsive :** texte non tronqué et hauteur non uniformisée si cela masque du contenu.
 - **Dépendances et réutilisation :** contenu bilingue validé.
 - **Exclusions :** ne devient pas une carte cliquable sans destination réelle.
-- **Questions ouvertes :** direction visuelle à définir en Figma.
+- **Questions ouvertes :** composition exacte à décliner dans Figma à partir de la direction validée.
 
 ### COMP-214 — Téléchargement du CV
 
@@ -577,9 +577,9 @@ Aucun composant décoratif autonome n'est figé à ce stade. Les éléments de l
 - **Interactions et événements conceptuels :** découvrir la collection ou ouvrir À propos.
 - **Accessibilité :** titre principal unique, ordre de lecture indépendant de la composition graphique, contenu jamais masqué jusqu'à la fin d'une animation.
 - **Responsive :** proposition de valeur et action principale précèdent les décorations ; les deux actions restent visibles.
-- **Dépendances et réutilisation :** introduction bilingue et direction artistique future.
+- **Dépendances et réutilisation :** introduction bilingue et direction « Studio graphique modulaire » définie dans `docs/ui/DESIGN_SYSTEM.md`.
 - **Exclusions :** n'ouvre pas directement SideQuest depuis son CTA principal et n'introduit pas de custom cursor.
-- **Questions ouvertes :** contenu final et concept visuel à définir.
+- **Questions ouvertes :** contenu final à fournir et composition exacte à décliner dans Figma à partir de la direction validée.
 
 ### COMP-302 — Sélection de projet d'accueil
 
@@ -760,7 +760,7 @@ Légende : `●` composant principal, `○` composant présent ou enfant, `◇` 
 - La page courante, la langue active, le projet sélectionné et le statut fictif ne dépendent jamais de la couleur seule.
 - Les icônes utiles sont accompagnées d'un libellé ; les icônes redondantes sont ignorées par les technologies d'assistance.
 - Les images informatives ont une alternative contextualisée ; les décorations sont ignorées.
-- Les changements automatiques ne déplacent jamais le focus et peuvent être arrêtés durablement.
+- Les changements automatiques du carrousel ne déplacent jamais le focus et peuvent être arrêtés durablement.
 - Les messages utiles sont annoncés avec une priorité adaptée, sans transformer chaque mise à jour en alerte.
 
 ### 10.3 Responsive
@@ -774,7 +774,7 @@ Légende : `●` composant principal, `○` composant présent ou enfant, `◇` 
 ### 10.4 Mouvement réduit
 
 - `COMP-205` désactive l'autoplay et conserve sa navigation manuelle.
-- `COMP-208` devient statique et présente toutes les stacks sans attente.
+- `COMP-208` est déjà statique dans tous les modes et présente toutes les stacks sans attente.
 - `COMP-103` et les autres transitions utilisent une apparition immédiate ou fortement réduite.
 - Aucune animation d'entrée ne retarde ou ne masque un contenu.
 - Les états focus, sélection, succès et erreur restent perceptibles par des indices statiques.
@@ -800,7 +800,7 @@ Légende : `●` composant principal, `○` composant présent ou enfant, `◇` 
 | CV français et anglais | COMP-105, COMP-214 | États final et indisponible | Non |
 | Email, LinkedIn et GitHub | COMP-105, COMP-215, COMP-216, COMP-217 | Destinations et vérification des retours | Non |
 | Rédaction et relecture bilingues | Tous les composants textuels | Parité, tailles et validation éditoriale | Non |
-| Fondations visuelles et motion | Tous | Variantes visuelles, tailles, focus, animation et responsive exacts | Non ; entrée de la phase suivante |
+| Consommation des fondations validées | Tous | Vérification des variantes, tailles, focus et comportements responsive dans les compositions réelles | Non ; contrôle attendu pendant Figma |
 
 Aucune question ouverte ne modifie actuellement la responsabilité ou la frontière d'un composant V1. Les contenus manquants empêchent la maquette finale et l'implémentation concernée, mais pas la validation conceptuelle de cet inventaire.
 
@@ -813,17 +813,18 @@ L'inventaire peut être validé si Costa confirme que :
 - le panneau mobile compact, le sélecteur FR/EN et leurs comportements correspondent à l'expérience attendue ;
 - l'aperçu de projet commun, ses variantes, son activation complète et ses composants de statut et métadonnées sont cohérents ;
 - le carrousel d'images, ses miniatures, son autoplay contrôlable et son mode réduit sont suffisamment définis pour Figma ;
-- les stacks partagent un élément commun entre bandeau animé et listes détaillées ;
+- les stacks partagent un élément commun entre bandeau statique et listes détaillées ;
 - la timeline entièrement visible et les principes courts couvrent la page À propos sans interaction superflue ;
 - le CV mis en avant et le groupe de contacts restent distincts des simples liens du pied de page ;
 - les états critiques, le clavier, le lecteur d'écran, le responsive et la réduction du mouvement disposent d'un responsable clair ;
 - les évolutions V2 ne sont pas introduites silencieusement dans la V1 ;
 - les dépendances de contenu peuvent être résolues sans restructurer l'inventaire.
 
-Costa a validé explicitement la version 0.1.0 le 2026-09-15. Toute modification substantielle de ses responsabilités, variantes ou contrats transversaux exigera une nouvelle validation.
+Costa a validé explicitement la version 0.1.0 le 2026-09-15, puis a autorisé le 2026-09-16 l'alignement du bandeau de stacks sur les fondations de motion validées. Toute nouvelle modification substantielle de ses responsabilités, variantes ou contrats transversaux exigera une nouvelle validation.
 
 ## 14. Historique
 
 | Version | Date | État | Évolution |
 |---|---|---|---|
 | 0.1.0 | 2026-09-15 | Validé | Première version complète issue du PRD v0.2.1, des parcours v0.3.1, de l'architecture des pages v0.1.1 et de l'entretien avec Costa ; approuvée explicitement par Costa. |
+| 0.2.0 | 2026-09-16 | Validé | Alignement autorisé par Costa du bandeau de stacks sur la motion validée : composition statique à toutes les largeurs et résolution des références de fondations devenues obsolètes. |
