@@ -1,0 +1,10 @@
+{
+  "name": "Creative Portfolio — Functional Icons Builder",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
+}

@@ -1,0 +1,9 @@
+# COMP-202 — Statut du projet
+
+Plugin local pour créer la planche du statut de projet SideQuest dans le fichier Figma V1. Dans Figma Desktop, importer [`manifest.json`](./manifest.json) par **Plugins → Development → Import plugin from manifest**, puis lancer **Creative Portfolio — Project Status Builder**.
+
+Le plugin vérifie `COMP-105 Pied de page`, puis ajoute `02.11 — Project Status` et un set `Project status` de quatre variantes : `Locale=FR|EN` × `Format=Compact|Explanatory`. Le format compact accompagne l'aperçu de projet ; le format explicatif précède le contenu du détail. Tous deux annoncent textuellement que SideQuest est un mock fictif et qu'aucune application n'a été réalisée. Aucun statut n'est affiché par défaut sur un projet réel.
+
+La phrase française reprend la formulation des documents validés : « Mock fictif — application non réalisée ». Après la première revue visuelle, la proposition anglaise a été reformulée en « Fictional mockup — app not built » ; l'explication devient « SideQuest is a concept mockup. The app has not been built. ». Ces textes restent à valider avant de figer le contenu bilingue. Le rose est un accent visuel ; l'information reste complète sans couleur. Le composant est non interactif, sans état de survol ou de focus.
+
+Le plugin synchronise l'approbation de **structure uniquement** de `COMP-105` dans le sommaire et sa description. Les coordonnées, URLs de profils et CV restent à fournir avant validation finale du pied de page. Une relance conserve le set créé et ses instances, et met à jour les deux variantes anglaises seulement si leur texte n'a pas été personnalisé. **Statut : correction anglaise appliquée ; `COMP-202` et sa rédaction bilingue validés par Costa le 2026-09-21.** Le plugin `project-metadata-builder` synchronise cette approbation dans les descriptions, notes et sommaire Figma à son lancement.

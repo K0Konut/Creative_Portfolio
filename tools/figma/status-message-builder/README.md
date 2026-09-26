@@ -1,0 +1,9 @@
+# COMP-003 — Message d'état
+
+Plugin local pour créer la prochaine planche de revue dans le fichier Figma V1. Dans Figma Desktop, importer [`manifest.json`](./manifest.json) par **Plugins → Development → Import plugin from manifest**, puis lancer **Creative Portfolio — Status Message Builder**.
+
+Le plugin vérifie les fondations, `COMP-001 Action` et `COMP-002 Lien avec icône`. Il ajoute la page `02.4 — Status Message` avec un set `Status message` de 10 variantes : `Kind=Info|Empty|Error|Unavailable|Success` × `Size=Inline|Section`. Le titre et le corps sont modifiables par type de message ; le titre peut être masqué. Les propriétés de texte sont distinctes pour les cinq types afin qu'une correction de copie ne se propage pas aux autres messages. Les couleurs et espacements sont liés aux variables existantes, et la hauteur suit le contenu. Les textes sont des exemples de revue : leur ton final sera fixé avec les contenus des écrans.
+
+Les messages n'incluent pas de bouton fictif. Une action `COMP-001` ne sera composée avec le message que dans un écran où une destination ou une commande réelle est connue. Une erreur urgente pourra utiliser `role=alert` dans le futur code ; un succès de copie utilisera une zone de statut, sans déplacement automatique du focus. Le plugin actualise aussi le statut approuvé de `COMP-002` et ajoute `COMP-003` au sommaire.
+
+Une relance conserve le set et ses instances. La première relance après cette correction rétablit les dix textes d'exemple et remplace les anciennes propriétés de texte communes par des propriétés indépendantes pour chaque type. Si elle détecte un texte personnalisé, elle s'arrête avant modification. Les relances suivantes conservent les textes édités. **Statut : les dix variantes de `COMP-003` ont été validées visuellement par Costa le 2026-09-21.**

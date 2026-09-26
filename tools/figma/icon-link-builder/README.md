@@ -1,0 +1,11 @@
+# COMP-002 — Lien avec icône
+
+Plugin local pour construire le composant dans le fichier Figma V1 du portfolio. Ouvrir le fichier dans Figma Desktop, choisir **Plugins → Development → Import plugin from manifest**, puis sélectionner [`manifest.json`](./manifest.json). Exécuter ensuite **Creative Portfolio — Icon Link Builder** depuis les plugins de développement.
+
+Le plugin vérifie les variables, le style de texte, `Action` et les huit `Functional icon` approuvés avant d'écrire. Il crée la page `02.3 — Icon Link`, un set `Icon link` de 19 variantes (`Purpose × State`) et une planche de revue. Les quatre usages sont lien externe, email, copie et téléchargement. Les liens ont les états Default, Hover, Focus et Active ; la copie ajoute Disabled, Success et Error. Chaque variante expose un libellé modifiable. `Purpose` et `State` déterminent l'icône visible ; l'instance imbriquée peut être échangée manuellement dans Figma. Le lancement met aussi à jour le statut des icônes approuvées et la carte de `COMP-002` dans le sommaire. Une réexécution corrige les icônes du premier jet en conservant le set et ses identifiants.
+
+Le composant reprend le contrat visuel du contrôle `COMP-001 Action` : cible de 48 px, rayon de 8 px, tokens sémantiques et focus bicolore autour de l'ensemble icône + texte. Le set `Action` validé n'a pas de slot d'icône ; le composant est donc construit séparément dans Figma, sans modifier ses 20 variantes. Cette correspondance est à expliciter dans l'inventaire avant le handoff.
+
+La maquette ne définit pas de destination réelle : les liens sans destination seront absents de l'interface, et l'état `Disabled` concerne uniquement la commande de copie. `Success` et `Error` exigent une annonce accessible dans l'application. Le plugin ne publie rien et n'écrit aucun code d'application.
+
+Statut : **rendu corrigé validé par Costa le 2026-09-21**. La propriété d'échange `Icon` partagée donnait `ExternalLink` à toutes les variantes ; la réparation l'a supprimée et a relié chaque instance à l'icône prévue par son usage ou son état. Le set `Functional icon` approuvé n'a pas été reconstruit. Le statut textuel dans Figma sera synchronisé au prochain lancement du plugin ou d'un builder suivant.
